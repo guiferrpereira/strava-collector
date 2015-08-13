@@ -31,6 +31,7 @@ gem 'whenever', :require => false
 gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
+gem 'capistrano-rvm'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

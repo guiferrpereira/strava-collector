@@ -1,0 +1,6 @@
+{
+	"strava" : { 
+		"token":"XXXX",
+		"secret":"XXXX"
+	}
+}

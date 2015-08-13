@@ -27,6 +27,11 @@ gem 'strava-api-v3'
 gem 'redis'
 gem 'whenever', :require => false
 
+# Deploy with Capistrano
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

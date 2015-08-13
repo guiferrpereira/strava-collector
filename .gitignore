@@ -16,3 +16,4 @@
 !/log/.keep
 /tmp
 /config/settings.json
+/config/deploy/*.rb

@@ -10,6 +10,6 @@ module StravaCollector
   end
 
   def self.config
-    @c = Config.new ::Rails.root.join('config', 'settings.json')
+    @c ||= Config.new ::Rails.root.join('config', 'settings.json')
   end
 end

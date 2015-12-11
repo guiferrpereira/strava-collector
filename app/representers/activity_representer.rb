@@ -42,6 +42,7 @@ module ActivityRepresenter
   property :total_photo_count
   property :has_kudoed
   property :workout_type
+  property :average_speed_converted
 
   property :athlete, extend: AthleteRepresenter, class: Athlete
   property :map, extend: MapRepresenter, class: Map

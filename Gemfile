@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'strava-api-v3'
 gem 'redis'
+gem 'representable'
 gem 'whenever', :require => false
 
 # Deploy with Capistrano

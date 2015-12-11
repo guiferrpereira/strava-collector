@@ -1,0 +1,2 @@
+class Map < OpenStruct
+end

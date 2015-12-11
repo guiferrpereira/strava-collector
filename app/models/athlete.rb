@@ -1,0 +1,2 @@
+class Athlete < OpenStruct
+end

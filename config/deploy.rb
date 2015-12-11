@@ -2,13 +2,13 @@
 lock '3.3.5'
 
 set :application, 'strava_collector'
-set :repo_url, 'git@github.com:guiferrpereira/strava-collector.git'
+set :repo_url, 'https://github.com/guiferrpereira/strava-collector.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/strava_collector'
+set :deploy_to, '/home/strava'
 
 # Default value for :pty is false
 # set :pty, true

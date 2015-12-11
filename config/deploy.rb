@@ -8,7 +8,7 @@ set :repo_url, 'https://github.com/guiferrpereira/strava-collector.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/strava'
+set :deploy_to, '/home/strava/app'
 
 # Default value for :pty is false
 # set :pty, true
@@ -19,8 +19,14 @@ set :linked_files, fetch(:linked_files, []).push('config/settings.json')
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
-namespace :deploy do
+set :unicorn, 'service strava'
 
+namespace :deploy do
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      sudo fetch(:unicorn), :restart
+    end
+  end
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -30,4 +36,6 @@ namespace :deploy do
     end
   end
 
+  after :publishing, :restart
+  after :finishing, 'deploy:cleanup'
 end

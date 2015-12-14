@@ -17,3 +17,5 @@
 /tmp
 /config/settings.json
 /config/deploy/*.rb
+
+/.capistrano

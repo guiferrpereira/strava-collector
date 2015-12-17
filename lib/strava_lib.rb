@@ -83,16 +83,7 @@ module StravaLib
     end
 
     def athlete
-      @athlete = Athlete.new.extend(ActivityRepresenter).from_json(response_json)
+      Athlete.find_or_create(@response_json)
     end
-
-    # def access_token
-    #   response_hash[:access_token]
-    # end
-
-    # private
-    # def response_hash
-    #   @response_hash ||= JSON.parse(response_json).with_indifferent_access
-    # end
   end
 end

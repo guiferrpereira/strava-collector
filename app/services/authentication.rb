@@ -18,14 +18,6 @@ class Authentication
     end
   end
 
-  # def user
-  #   @user ||= User.find_or_create_by(uid: athlete.id) do |user|
-  #     user.uid        = athlete.id
-  #     user.first_name = athlete.firstname
-  #     user.last_name  = athlete.lastname
-  #   end
-  # end
-
   private
 
   def token_response

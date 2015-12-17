@@ -4,6 +4,7 @@
     "token_uri":"https://www.strava.com/oauth/token",
     "upload_uri":"https://www.strava.com/api/v3/uploads",
     "client_id":"xxxx",
-    "client_secret":"xxxx"
+    "client_secret":"xxxx",
+    "secret":"xxxx"
   }
 }

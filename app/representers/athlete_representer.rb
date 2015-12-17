@@ -29,4 +29,6 @@ module AthleteRepresenter
   property :clubs
   property :bikes
   property :shoes
+
+  property :access_token
 end

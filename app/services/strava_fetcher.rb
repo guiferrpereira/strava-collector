@@ -1,6 +1,6 @@
 class StravaFetcher
-  def initialize
-    @strava_client ||= Strava::Api::V3::Client.new(access_token: StravaCollector.config.strava[:token])
+  def initialize user_token
+    @strava_client ||= Strava::Api::V3::Client.new(access_token: user_token)
     @redis ||= Redis.new
   end
 

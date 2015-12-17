@@ -6,7 +6,7 @@ class AccountController < ApplicationController
     user = Authentication.new(params).authenticate
     if user.present?
       session[:user_id] = user.id
-      redirect_to activities_url
+      redirect_to root_url
     else
       render text: "Unable to authenticate with Strava."
     end

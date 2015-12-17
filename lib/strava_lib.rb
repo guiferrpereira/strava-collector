@@ -50,8 +50,8 @@ module StravaLib
       @authorization_code = authorization_code
     end
 
-    def response
-      TokenResponse.new(response_body)
+    def athlete
+      TokenResponse.new(response_body).athlete
     end
 
     private
@@ -83,7 +83,7 @@ module StravaLib
     end
 
     def athlete
-      Athlete.find_or_create(@response_json)
+      @athlete ||= Athlete.find_or_create(@response_json)
     end
   end
 end

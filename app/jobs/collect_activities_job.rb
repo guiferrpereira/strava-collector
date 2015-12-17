@@ -1,7 +1,7 @@
 class CollectActivitiesJob < ActiveJob::Base
   queue_as :default
 
-  def perform(*args)
-    StravaFetcher.new.fetch_activities
+  def perform(user_token)
+    StravaFetcher.new(user_token).fetch_activities
   end
 end

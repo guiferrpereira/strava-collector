@@ -3,13 +3,27 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # before_filter do
-  #   @current_user ||= current_user
-  # end
+  def require_login
+    unless authenticated?
+      redirect_to login_path
+    end
+  end
 
-  protected
+  def authenticated?
+    current_user.present?
+  end
+
   def current_user
-    Athlete.new(strava_client.retrieve_current_athlete)
+    @current_user ||= user_from_session
+  end
+  
+  protected
+  def user_from_session
+    Athlete.find(user_id) if user_id.present?
+  end
+
+  def user_id
+    session[:user_id]
   end
 
   def strava_client

@@ -4,7 +4,7 @@ class Activity < OpenStruct
   end
 
   def self.all athlete_id=nil
-    @all ||= Redis.new.keys("#{athlete_id}-*").map do |key|
+    @all ||= Redis.new.keys("activity-#{athlete_id}-*").map do |key|
       self.new.extend(ActivityRepresenter).from_json(Redis.new.get(key))
     end.compact
   end

@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'strava-api-v3'
+gem 'strava-api-v3', git: "https://github.com/guiferrpereira/strava-api-v3.git", branch: 'friend_endpoints'
 
 gem 'redis'
 gem 'representable'

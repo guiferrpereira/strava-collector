@@ -1,6 +1,6 @@
 <div>
-  <%=link_to "Process Data", update_activities_url%>
-  
+  <%=link_to "Process Data", update_activities_url, {method: :put, remote: true} %>
+
   <table id="dataTable" class="table table-striped table-condensed table-hover table-bordered sortable">
     <thead>
       <tr>

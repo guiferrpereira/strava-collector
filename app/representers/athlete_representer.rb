@@ -30,5 +30,7 @@ module AthleteRepresenter
   property :bikes
   property :shoes
 
+  property :activities
   property :access_token
+  property :stats
 end

@@ -7,7 +7,7 @@ class Athlete < OpenStruct
     athlete = self.new.extend(AthleteRepresenter).from_json(parse_json(@athlete_json).to_json)
 
     create_or_update(athlete_json)
-    
+
     athlete
   end
 
@@ -17,6 +17,14 @@ class Athlete < OpenStruct
 
   def access_token
     JSON.parse(Redis.new.get("athlete-#{self.id}"))["access_token"]
+  end
+
+  def activities
+    Activity.all(self.id)
+  end
+
+  def friends
+    Friend.all(self.id)
   end
 
   private

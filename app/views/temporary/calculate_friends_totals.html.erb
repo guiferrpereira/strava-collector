@@ -1,0 +1,33 @@
+<div>
+  <%#=link_to "Process Data", update_activities_url%>
+
+  <table id="dataTable" class="table table-striped table-condensed table-hover table-bordered sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Distance</th>
+        <th>Sport</th>
+        <th>Time</th>
+        <th>Elevation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@friends.each do |friend|%>
+        <%begin%>
+          <%if !friend.stats.nil?%>
+            <tr>
+              <td><%=friend.id%></td>
+              <td><%=friend.firstname%> <%=friend.lastname%></td>
+              <td><%=friend.stats.year.distance.gsub(/,/, '').to_f%></td>
+              <td><%=friend.stats.year.sport%></td>
+              <td><%=friend.converted_time%></td>
+              <td><%=friend.stats.year.elevation.gsub(/,/, '').to_f%></td>
+            </tr>
+          <%end%>
+        <%rescue%>
+        <%end%>
+      <%end%>
+    </tbody>
+  </table>
+</div>

@@ -3,8 +3,12 @@
     "authorize_uri":"https://www.strava.com/oauth/authorize",
     "token_uri":"https://www.strava.com/oauth/token",
     "upload_uri":"https://www.strava.com/api/v3/uploads",
+    "authorize_redirect_uri":"localhost:3000/authorize",
     "client_id":"xxxx",
     "client_secret":"xxxx",
     "secret":"xxxx"
+  },
+  "strava-scraper" : {
+    "url":"https://xxx"
   }
 }

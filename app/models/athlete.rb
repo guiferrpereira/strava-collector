@@ -1,6 +1,12 @@
 class Athlete < OpenStruct
   attr_accessor :athlete_json
 
+  def self.all
+    @all ||= Redis.new.keys("athlete-*").map do |key|
+      self.new.extend(AthleteRepresenter).from_json(parse_json(Redis.new.get(key)).to_json)
+    end.compact
+  end
+
   def self.find_or_create athlete_json
     @athlete_json = athlete_json
 

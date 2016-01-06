@@ -8,7 +8,10 @@
         <th>When</th>
         <th>Distance</th>
         <th>Average Speed</th>
+        <th>Elevation</th>
         <th>Name</th>
+        <th>Kudos Count</th>
+        <th>Athlete Count</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +21,10 @@
           <td><%=activity.start_date%></td>
           <td><%=activity.distance%></td>
           <td><%=activity.average_speed_converted%></td>
+          <td><%=activity.total_elevation_gain%></td>
           <td><%=activity.name%></td>
+          <td><%=activity.kudos_count%></td>
+          <td><%=activity.athlete_count%></td>
         </tr>
       <%end%>
     </tbody>

@@ -15,6 +15,12 @@ class TemporaryController < ApplicationController
     redirect_to root_url
   end
 
+  def update_stats
+    CollectFriendsStats.perform_now(@current_user.access_token)
+
+    redirect_to leaderboards_url
+  end
+
   def calculate_friends_totals
     @friends = @current_user.friends
 

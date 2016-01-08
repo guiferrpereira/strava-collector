@@ -38,14 +38,33 @@ class StravaFetcher
     friends = @strava_client.list_athlete_friends
 
     friends.each  do |friend|
-      uri = URI("#{StravaCollector.config.strava_scraper[:url]}/#{friend['id']}")
-      rsp = Net::HTTP.get_response(uri)
-      @redis.set "stats-#{friend['id']}", clean_extra_characters(rsp.body) if rsp.kind_of? Net::HTTPSuccess
+      friend_with_stats = @redis.get("stats-#{friend['id']}")
+
+      if friend_with_stats.nil? || !friend.has_key?("last_time_checked")
+        process_data(friend['id'])
+      elsif friend_with_stats["last_time_checked"].to_i < (Time.now - 1.hour).to_i
+        process_data(friend['id'])
+      end
     end
   end
 
   private
   def clean_extra_characters json
     json.reverse.chop.reverse.chop
+  end
+
+  def add_datetime_info data
+    json = JSON.parse(clean_extra_characters(data))
+    json["last_time_checked"] = Time.now.to_i
+    json
+  end
+
+  def process_data friend_id
+    uri = URI("#{StravaCollector.config.strava_scraper[:url]}/#{friend['id']}")
+    rsp = Net::HTTP.get_response(uri)
+
+    if rsp.kind_of? Net::HTTPSuccess
+      @redis.set "stats-#{friend['id']}", add_datetime_info(rsp.body)
+    end
   end
 end

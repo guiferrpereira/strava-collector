@@ -6,4 +6,5 @@ module StatRepresenter
   property :current, decorator: TotalRepresenter, class: Stat
   property :year, decorator: TotalRepresenter, class: Stat
   property :all, decorator: TotalRepresenter, class: Stat
+  property :last_time_checked
 end

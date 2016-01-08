@@ -23,6 +23,7 @@
               <td><%=friend.stats.year.sport%></td>
               <td><%=friend.converted_time%></td>
               <td><%=friend.stats.year.elevation.gsub(/,/, '').to_f%></td>
+              <td><%=Time.at(friend.stats.last_time_checked)%></td>
             </tr>
           <%end%>
         <%rescue%>

@@ -40,7 +40,7 @@ class StravaFetcher
     friends.each  do |friend|
       friend_with_stats = @redis.get("stats-#{friend['id']}")
 
-      if friend_with_stats.nil? || !friend.has_key?("last_time_checked")
+      if friend_with_stats.nil?
         process_data(friend['id'])
       elsif friend_with_stats["last_time_checked"].to_i < (Time.now - 1.hour).to_i
         process_data(friend['id'])
@@ -55,8 +55,8 @@ class StravaFetcher
 
   def add_datetime_info data
     json = JSON.parse(clean_extra_characters(data))
-    json["last_time_checked"] = Time.now.to_i
-    json
+    json["last_time_checked"] = Time.now.to_i.to_s
+    JSON.unparse(json)
   end
 
   def process_data friend_id

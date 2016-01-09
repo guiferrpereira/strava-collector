@@ -60,11 +60,11 @@ class StravaFetcher
   end
 
   def process_data friend_id
-    uri = URI("#{StravaCollector.config.strava_scraper[:url]}/#{friend['id']}")
+    uri = URI("#{StravaCollector.config.strava_scraper[:url]}/#{friend_id}")
     rsp = Net::HTTP.get_response(uri)
 
     if rsp.kind_of? Net::HTTPSuccess
-      @redis.set "stats-#{friend['id']}", add_datetime_info(rsp.body)
+      @redis.set "stats-#{friend_id}", add_datetime_info(rsp.body)
     end
   end
 end

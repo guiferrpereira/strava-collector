@@ -7,8 +7,8 @@
     "client_id":"xxxx",
     "client_secret":"xxxx",
     "secret":"xxxx",
-    "activities_url":"https://www.strava.com/athletes/",
-    "athletes_url":"https://www.strava.com/activities/"
+    "activities_url":"https://www.strava.com/activities/",
+    "athletes_url":"https://www.strava.com/athletes/"
   },
   "strava-scraper" : {
     "url":"https://xxx"

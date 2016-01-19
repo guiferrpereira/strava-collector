@@ -18,7 +18,7 @@
         <%begin%>
           <%if !friend.stats.nil?%>
             <tr>
-              <td><%=friend.id%></td>
+              <td><%=link_to friend.id, StravaCollector.config.strava[:athletes_url] + friend.id%></td>
               <td><%=friend.firstname%> <%=friend.lastname%></td>
               <td><%=friend.stats.year.distance.gsub(/,/, '').to_f%></td>
               <td><%=friend.stats.year.sport%></td>

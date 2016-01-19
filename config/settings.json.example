@@ -6,7 +6,9 @@
     "authorize_redirect_uri":"localhost:3000/authorize",
     "client_id":"xxxx",
     "client_secret":"xxxx",
-    "secret":"xxxx"
+    "secret":"xxxx",
+    "activities_url":"https://www.strava.com/athletes/",
+    "athletes_url":"https://www.strava.com/activities/"
   },
   "strava-scraper" : {
     "url":"https://xxx"

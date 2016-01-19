@@ -17,7 +17,11 @@
     <tbody>
       <%@activities.each do |activity|%>
         <tr>
-          <td><%=link_to activity.id, StravaCollector.config.strava[:activities_url] + activity.id%></td>
+          <td>
+            <a href="<%=StravaCollector.config.strava[:activities_url] + activity.id%>">
+              <%=friend.id%>
+            </a>
+          </td>
           <td><%=activity.start_date%></td>
           <td><%=activity.distance%></td>
           <td><%=activity.average_speed_converted%></td>

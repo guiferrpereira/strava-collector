@@ -18,8 +18,8 @@
       <%@activities.each do |activity|%>
         <tr>
           <td>
-            <a href="<%=StravaCollector.config.strava[:activities_url] + activity.id%>">
-              <%=friend.id%>
+            <a href="<%=StravaCollector.config.strava[:activities_url] + activity.id.to_s%>">
+              <%=friend.id.to_s%>
             </a>
           </td>
           <td><%=activity.start_date%></td>

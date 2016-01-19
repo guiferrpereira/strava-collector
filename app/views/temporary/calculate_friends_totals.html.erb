@@ -19,8 +19,8 @@
           <%if !friend.stats.nil?%>
             <tr>
               <td>
-                <a href="<%=StravaCollector.config.strava[:athletes_url] + friend.id%>">
-                  <%=friend.id%>
+                <a href="<%=StravaCollector.config.strava[:athletes_url] + friend.id.to_s%>">
+                  <%=friend.id.to_s%>
                 </a>
               </td>
               <td><%=friend.firstname%> <%=friend.lastname%></td>

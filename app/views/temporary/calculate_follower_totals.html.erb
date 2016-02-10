@@ -1,0 +1,39 @@
+<div>
+  <%#=link_to "Process Data", update_stats_url, {method: :put, remote: true} %>
+
+  <table id="dataTable" class="table table-striped table-condensed table-hover table-bordered sortable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Distance</th>
+        <th>Sport</th>
+        <th>Time</th>
+        <th>Elevation</th>
+        <th>Time checked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@followers.each do |follower|%>
+        <%begin%>
+          <%if !follower.stats.nil?%>
+            <tr>
+              <td>
+                <a href="<%=StravaCollector.config.strava[:athletes_url] + follower.id.to_s%>">
+                  <%=follower.id.to_s%>
+                </a>
+              </td>
+              <td><%=follower.firstname%> <%=follower.lastname%></td>
+              <td><%=follower.stats.year.distance.gsub(/,/, '').to_f%></td>
+              <td><%=follower.stats.year.sport%></td>
+              <td><%=follower.converted_time%></td>
+              <td><%=follower.stats.year.elevation.gsub(/,/, '').to_f%></td>
+              <td><%=Time.at(follower.stats.last_time_checked.to_i)%></td>
+            </tr>
+          <%end%>
+        <%rescue%>
+        <%end%>
+      <%end%>
+    </tbody>
+  </table>
+</div>

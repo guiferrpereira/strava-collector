@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   put 'update_activities',  to: 'temporary#update_activities'
   put 'update_stats',       to: 'temporary#update_stats'
   get 'leaderboards',       to: 'temporary#calculate_friends_totals'
+  get 'leaderboards2',      to: 'temporary#calculate_followers_totals'
 end

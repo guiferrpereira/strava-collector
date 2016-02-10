@@ -33,6 +33,10 @@ class Athlete < OpenStruct
     Friend.all(self.id)
   end
 
+  def followers
+    Follower.all(self.id)
+  end
+
   private
   def self.read id
     Redis.new.get("athlete-#{id}")

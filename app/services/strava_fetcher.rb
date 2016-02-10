@@ -48,6 +48,32 @@ class StravaFetcher
     end
   end
 
+  def fetch_followers athlete_id
+    followers = @strava_client.list_athlete_followers
+
+    followers.each  do |follower|
+      if @redis.get "follower-#{athlete_id}-#{follower['id']}".present?
+        break
+      else
+        @redis.set "follower-#{athlete_id}-#{follower['id']}", follower.to_json
+      end
+    end
+  end
+
+  def fetch_follower_stats
+    friends = @strava_client.list_athlete_followers
+
+    friends.each  do |follower|
+      follower_with_stats = @redis.get("stats-#{follower['id']}-follower")
+
+      if follower_with_stats.nil?
+        process_data(follower['id'], true)
+      elsif follower_with_stats["last_time_checked"].to_i < (Time.now - 1.hour).to_i
+        process_data(follower['id'], true)
+      end
+    end
+  end
+
   private
   def clean_extra_characters json
     json.reverse.chop.reverse.chop
@@ -59,12 +85,12 @@ class StravaFetcher
     JSON.unparse(json)
   end
 
-  def process_data friend_id
+  def process_data friend_id, follower=false
     uri = URI("#{StravaCollector.config.strava_scraper[:url]}/#{friend_id}")
     rsp = Net::HTTP.get_response(uri)
 
     if rsp.kind_of? Net::HTTPSuccess
-      @redis.set "stats-#{friend_id}", add_datetime_info(rsp.body)
+      @redis.set "stats-#{friend_id}#{follower ? '-follower' : ''}", add_datetime_info(rsp.body)
     end
   end
 end

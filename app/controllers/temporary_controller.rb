@@ -29,7 +29,7 @@ class TemporaryController < ApplicationController
     end
   end
 
-  def calculate_followers_totals
+  def calculate_follower_totals
     @friends = @current_user.followers
 
     respond_to do |format|

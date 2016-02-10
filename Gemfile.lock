@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/guiferrpereira/strava-api-v3.git
-  revision: 79efbc143373f76f5bb039506298c7b6c9a8db71
+  revision: 34547d9fcf89d87aab3bebfdd5cbcb2c8d9e6a27
   branch: friend_endpoints
   specs:
     strava-api-v3 (0.0.5)
@@ -215,3 +215,6 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
   whenever
+
+BUNDLED WITH
+   1.10.6

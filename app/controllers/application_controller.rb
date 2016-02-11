@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= user_from_session
+    @current_user = user_from_session
   end
-  
+
   protected
   def user_from_session
     Athlete.find(user_id) if user_id.present?

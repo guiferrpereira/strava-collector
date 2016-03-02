@@ -48,8 +48,10 @@ class StravaFetcher
     end
   end
 
-  def fetch_followers athlete_id
-    followers = @strava_client.list_athlete_followers
+  def fetch_followers athlete_id, page=1
+    followers = @strava_client.list_athlete_followers page: page
+
+    return [] if followers.empty?
 
     followers.each  do |follower|
       if @redis.get "follower-#{athlete_id}-#{follower['id']}".present?
@@ -58,6 +60,8 @@ class StravaFetcher
         @redis.set "follower-#{athlete_id}-#{follower['id']}", follower.to_json
       end
     end
+    page += 1
+    self.fetch_followers athlete_id, page
   end
 
   def fetch_follower_stats

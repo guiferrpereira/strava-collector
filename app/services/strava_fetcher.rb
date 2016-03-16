@@ -36,7 +36,6 @@ class StravaFetcher
 
   def fetch_stats
     friends = @strava_client.list_athlete_friends
-    Friend.all()
 
     friends.each  do |friend|
       friend_with_stats = @redis.get("stats-#{friend['id']}")

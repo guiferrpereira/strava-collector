@@ -1,6 +1,6 @@
 class Friend < OpenStruct
   def self.all athlete_id=nil
-    @all ||= Redis.new.keys("friend-#{athlete_id}-*").map do |key|
+    @all = Redis.new.keys("friend-#{athlete_id}-*").map do |key|
       self.new.extend(AthleteRepresenter).from_json(Redis.new.get(key))
     end.compact
   end

@@ -36,6 +36,7 @@ class StravaFetcher
 
   def fetch_stats
     friends = @strava_client.list_athlete_friends
+    Friend.all()
 
     friends.each  do |friend|
       friend_with_stats = @redis.get("stats-#{friend['id']}")
@@ -44,6 +45,20 @@ class StravaFetcher
         process_data(friend['id'])
       elsif friend_with_stats["last_time_checked"].to_i < (Time.now - 1.hour).to_i
         process_data(friend['id'])
+      end
+    end
+  end
+
+  def fetch_stats_2 athlete_id
+    friends = Friend.all(athlete_id)
+
+    friends.each  do |friend|
+      friend_with_stats = @redis.get("stats-#{friend.id}")
+
+      if friend_with_stats.nil?
+        process_data(friend.id)
+      elsif friend_with_stats["last_time_checked"].to_i < (Time.now - 1.hour).to_i
+        process_data(friend.id)
       end
     end
   end

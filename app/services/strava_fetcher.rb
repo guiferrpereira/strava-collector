@@ -35,6 +35,7 @@ class StravaFetcher
   end
 
   def fetch_stats
+    # Add extra riders here :P
     friends = @strava_client.list_athlete_friends
 
     friends.each  do |friend|

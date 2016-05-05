@@ -29,6 +29,7 @@ group :development do
 end
 
 group :production do
+  gem 'bundler'
   gem 'therubyracer'
 
   # Use Unicorn as the app server
